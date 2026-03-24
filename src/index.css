@@ -28,3 +28,21 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.scroll-indicator {
+  animation: indicator-fade 2.8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes indicator-fade {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: translateY(6px);
+  }
+}

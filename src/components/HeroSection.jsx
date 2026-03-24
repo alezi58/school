@@ -1,29 +1,57 @@
 import { useEffect, useState } from "react";
 
 export default function HeroSection({ subtitle, title, cta }) {
-  const [offset, setOffset] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setOffset(window.scrollY * 0.12);
+    let ticking = false;
 
-    onScroll();
+    const updateScroll = () => {
+      setScrollY(window.scrollY);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(updateScroll);
+    };
+
+    updateScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const parallaxProgress = Math.min(scrollY / 700, 1);
+  const backgroundOffset = parallaxProgress * 140;
+  const contentOffset = parallaxProgress * 52;
+  const indicatorOffset = Math.min(parallaxProgress * 22, 22);
+  const contentOpacity = Math.max(1 - parallaxProgress * 0.9, 0.1);
+  const indicatorOpacity = Math.max(0.82 - parallaxProgress * 0.55, 0.2);
+
   return (
-    <header className="relative flex min-h-[100svh] items-center overflow-hidden bg-stone-950 text-white md:min-h-[110svh]">
+    <header className="relative flex min-h-[100svh] items-center overflow-hidden bg-stone-950 text-white">
       <div
-        className="absolute inset-0 scale-105 bg-cover bg-center transition-transform duration-150"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/hero.png')",
-          transform: `translateY(${offset}px) scale(1.08)`,
+          transform: `translateY(${backgroundOffset}px) scale(1.16)`,
         }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,15,16,0.26),rgba(15,15,16,0.08)_40%,rgba(0,0,0,0.8))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,15,16,0.2),rgba(15,15,16,0.12)_38%,rgba(0,0,0,0.84))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(184,141,88,0.32),transparent_42%)]" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-28 pt-28 text-center sm:px-6 lg:px-8">
+      <div
+        className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-28 pt-28 text-center sm:px-6 lg:px-8"
+        style={{
+          transform: `translateY(${contentOffset}px)`,
+          opacity: contentOpacity,
+        }}
+      >
         <p className="mb-5 inline-flex rounded-full border border-[#f4ddbb]/20 bg-[#b88d58]/18 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f4ddbb] backdrop-blur">
           {subtitle}
         </p>
@@ -36,11 +64,17 @@ export default function HeroSection({ subtitle, title, cta }) {
         >
           {cta}
         </a>
+      </div>
 
-        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4 text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white/60">
-          <span className="h-14 w-px bg-gradient-to-b from-transparent via-white/60 to-transparent" />
-          <span>Прокрутите, чтобы узнать больше</span>
-        </div>
+      <div
+        className="scroll-indicator pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-3 text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white/70 sm:bottom-8"
+        style={{
+          transform: `translateY(${indicatorOffset}px)`,
+          opacity: indicatorOpacity,
+        }}
+      >
+        <span className="h-12 w-px bg-gradient-to-b from-transparent via-white/70 to-transparent" />
+        <span>Прокрутите, чтобы узнать больше</span>
       </div>
     </header>
   );
