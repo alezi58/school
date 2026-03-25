@@ -44,10 +44,13 @@ function ModelCanvas({ modelUrl, title }) {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.enablePan = false;
+    controls.enablePan = true;
     controls.minDistance = 3;
     controls.maxDistance = 18;
     controls.maxPolarAngle = Math.PI / 2.05;
+    controls.panSpeed = 0.85;
+    controls.touches.ONE = THREE.TOUCH.ROTATE;
+    controls.touches.TWO = THREE.TOUCH.DOLLY_PAN;
 
     const ambientLight = new THREE.AmbientLight("#f7f1df", 2.2);
     scene.add(ambientLight);
@@ -102,15 +105,25 @@ function ModelCanvas({ modelUrl, title }) {
       const box = new THREE.Box3().setFromObject(root);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
+      const isMobile = container.clientWidth < 768;
 
       root.position.x -= center.x;
       root.position.y -= box.min.y;
       root.position.z -= center.z;
 
+      if (isMobile) {
+        root.position.y += size.y * 0.3;
+      }
+
       const radius = Math.max(size.x, size.z) * 0.5;
       const height = size.y;
-      controls.target.set(0, height * 0.42, 0);
-      camera.position.set(radius * 1.85, Math.max(3.6, height * 0.9), radius * 2.15);
+      const targetY = isMobile ? height * 0.12 : height * 0.42;
+      const cameraY = isMobile ? Math.max(3.4, height * 0.74) : Math.max(3.6, height * 0.9);
+      const cameraX = isMobile ? radius * 1.65 : radius * 1.85;
+      const cameraZ = isMobile ? radius * 2.1 : radius * 2.15;
+
+      controls.target.set(0, targetY, 0);
+      camera.position.set(cameraX, cameraY, cameraZ);
       controls.update();
     };
 
@@ -201,9 +214,8 @@ function ModelCanvas({ modelUrl, title }) {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-3 bottom-3 md:hidden">
+      <div className="pointer-events-none absolute inset-x-3 top-3 md:hidden">
         <div className="mx-auto max-w-sm rounded-[1.4rem] border border-white/14 bg-[rgba(10,40,32,0.22)] px-4 py-3 text-white shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-          <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-white/20" />
           <div className="grid grid-cols-2 gap-2">
             <ControlChip label="Вращение" value="Поворот пальцем" />
             <ControlChip label="Масштаб" value="Pinch / жест" />

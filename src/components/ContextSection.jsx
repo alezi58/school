@@ -4,7 +4,7 @@ export default function ContextSection({ content }) {
   return (
     <section id="about" className="relative overflow-hidden bg-[var(--page-bg)] py-24 md:py-30">
       <div
-        className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 grayscale"
+        className="absolute inset-0 bg-cover bg-center opacity-40 grayscale md:scale-105"
         style={{
           backgroundImage:
             "linear-gradient(rgba(237,243,237,0.82), rgba(237,243,237,0.92)), url('/images/context.jpg')",

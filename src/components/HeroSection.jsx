@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function HeroSection({ subtitle, title, cta }) {
   const [scrollY, setScrollY] = useState(0);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -26,20 +27,33 @@ export default function HeroSection({ subtitle, title, cta }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const updateViewport = () => {
+      setIsMobileViewport(mediaQuery.matches);
+    };
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
   const parallaxProgress = Math.min(scrollY / 700, 1);
-  const backgroundOffset = parallaxProgress * 140;
-  const contentOffset = parallaxProgress * 52;
+  const backgroundOffset = isMobileViewport ? 0 : parallaxProgress * 140;
+  const contentOffset = isMobileViewport ? parallaxProgress * 22 : parallaxProgress * 52;
   const indicatorOffset = Math.min(parallaxProgress * 22, 22);
   const contentOpacity = Math.max(1 - parallaxProgress * 0.9, 0.1);
   const indicatorOpacity = Math.max(0.82 - parallaxProgress * 0.55, 0.2);
 
   return (
-    <header className="relative flex min-h-[100svh] items-center overflow-hidden bg-stone-950 text-white">
+    <header className="relative flex min-h-[100dvh] items-center overflow-hidden bg-stone-950 text-white">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/hero.png')",
-          transform: `translateY(${backgroundOffset}px) scale(1.16)`,
+          transform: `translateY(${backgroundOffset}px) scale(${isMobileViewport ? 1.08 : 1.16})`,
         }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,15,16,0.2),rgba(15,15,16,0.12)_38%,rgba(0,0,0,0.84))]" />
@@ -60,7 +74,7 @@ export default function HeroSection({ subtitle, title, cta }) {
         </h1>
         <a
           href="#arches"
-          className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[var(--surface-dark-soft)] px-8 text-base font-bold text-white shadow-[0_18px_44px_rgba(4,63,54,0.34)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-dark)]"
+          className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[var(--accent)] px-8 text-base font-bold text-[var(--accent-ink)] shadow-[0_20px_44px_rgba(196,155,43,0.32)] transition hover:-translate-y-0.5 hover:bg-[var(--accent-light)]"
         >
           {cta}
         </a>
