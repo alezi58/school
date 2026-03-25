@@ -6,6 +6,20 @@
   --font-display: "Playfair Display", serif;
 }
 
+:root {
+  --page-bg: #edf1eb;
+  --page-bg-soft: #e3e9df;
+  --page-bg-muted: #d6dfd2;
+  --surface-dark: #064d42;
+  --surface-dark-strong: #043f36;
+  --surface-dark-soft: #0a5a4d;
+  --accent: #c49b2b;
+  --accent-strong: #a88420;
+  --accent-soft: #e0bd63;
+  --accent-light: #f0d792;
+  --accent-ink: #203126;
+}
+
 html {
   scroll-behavior: smooth;
 }

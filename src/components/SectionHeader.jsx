@@ -5,8 +5,8 @@ export default function SectionHeader({ eyebrow, title, description, light = fal
         className={[
           "mb-6 inline-flex rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em]",
           light
-            ? "border-white/15 bg-white/5 text-[#e8ca95]"
-            : "border-black/10 bg-black/[0.03] text-[#7c6649]",
+            ? "border-[color:var(--accent)]/35 bg-[color:var(--accent)]/10 text-[var(--accent-soft)]"
+            : "border-black/10 bg-black/[0.03] text-[var(--accent-strong)]",
         ].join(" ")}
       >
         {eyebrow}

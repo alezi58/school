@@ -4,7 +4,7 @@ export default function DisciplinesSection({ intro, disciplines }) {
   return (
     <section
       id="arches"
-      className="overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(184,141,88,0.08),transparent_25%),#f6f3ee] py-24 md:py-30"
+      className="overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(95,127,102,0.12),transparent_25%),var(--page-bg)] py-24 md:py-30"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader {...intro} />
@@ -13,7 +13,7 @@ export default function DisciplinesSection({ intro, disciplines }) {
           {disciplines.map((item) => (
             <article
               key={item.id}
-              className="group flex min-h-[28rem] flex-col rounded-t-[4rem] rounded-b-[1.75rem] border border-black/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(184,141,88,0.08))] p-6 shadow-[0_18px_48px_rgba(0,0,0,0.12)] transition duration-500 hover:-translate-y-2 hover:border-[#b88d58]/45 md:min-h-[34rem] md:p-8"
+              className="group flex min-h-[28rem] flex-col rounded-t-[4rem] rounded-b-[1.75rem] border border-black/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(95,127,102,0.1))] p-6 shadow-[0_18px_48px_rgba(0,0,0,0.12)] transition duration-500 hover:-translate-y-2 hover:border-[color:var(--accent)]/45 md:min-h-[34rem] md:p-8"
             >
               <div className="mb-8 flex flex-1 items-center justify-center">
                 <img

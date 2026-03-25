@@ -10,7 +10,7 @@ import { siteContent } from "./data/siteContent";
 
 export default function App() {
   return (
-    <div className="bg-[#f6f3ee] text-stone-950 antialiased">
+    <div className="bg-[var(--page-bg)] text-stone-950 antialiased">
       <HeroSection {...siteContent.hero} />
       <main>
         <DisciplinesSection intro={siteContent.intro} disciplines={siteContent.disciplines} />

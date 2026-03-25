@@ -29,8 +29,8 @@ function ModelCanvas({ modelUrl, title }) {
     }
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#efe7d9");
-    scene.fog = new THREE.Fog("#efe7d9", 14, 28);
+    scene.background = new THREE.Color("#dfe8dc");
+    scene.fog = new THREE.Fog("#dfe8dc", 14, 28);
 
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
     camera.position.set(8, 5, 10);
@@ -49,16 +49,16 @@ function ModelCanvas({ modelUrl, title }) {
     controls.maxDistance = 18;
     controls.maxPolarAngle = Math.PI / 2.05;
 
-    const ambientLight = new THREE.AmbientLight("#fff6e9", 2.4);
+    const ambientLight = new THREE.AmbientLight("#f7f1df", 2.2);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight("#fff3dc", 2.8);
+    const keyLight = new THREE.DirectionalLight("#f4dfab", 2.6);
     keyLight.position.set(7, 10, 6);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(2048, 2048);
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight("#d7e6ff", 1.4);
+    const fillLight = new THREE.DirectionalLight("#c7ddd4", 1.4);
     fillLight.position.set(-8, 5, -6);
     scene.add(fillLight);
 
@@ -71,7 +71,7 @@ function ModelCanvas({ modelUrl, title }) {
     ground.receiveShadow = true;
     scene.add(ground);
 
-    const grid = new THREE.GridHelper(16, 16, "#c7b18f", "#d8c8ad");
+    const grid = new THREE.GridHelper(16, 16, "#6d8977", "#b7c8b7");
     grid.position.y = 0;
     grid.material.opacity = 0.25;
     grid.material.transparent = true;
@@ -188,13 +188,13 @@ function ModelCanvas({ modelUrl, title }) {
   }, [modelUrl]);
 
   return (
-    <div className="relative h-[34rem] overflow-hidden rounded-[2.25rem] border border-black/8 bg-[#efe7d9] shadow-[0_22px_60px_rgba(0,0,0,0.12)] md:h-[44rem]">
+    <div className="relative h-[38rem] overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#edf2ea_0%,#d8e2d3_100%)] md:h-[52rem] xl:h-[60rem]">
       <div ref={mountRef} className="h-full w-full" aria-label={title} />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(to_bottom,rgba(20,14,10,0.34),transparent)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(to_top,rgba(20,14,10,0.38),transparent)] md:hidden" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[linear-gradient(to_bottom,rgba(13,53,41,0.24),transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-[linear-gradient(to_top,rgba(13,53,41,0.18),transparent)] md:hidden" />
 
-      <div className="pointer-events-none absolute right-4 top-4 hidden max-w-sm rounded-[1.2rem] border border-white/14 bg-black/20 p-3 text-white shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur-md md:block">
+      <div className="pointer-events-none absolute right-5 top-5 hidden max-w-sm rounded-[1.4rem] border border-white/16 bg-[rgba(10,40,32,0.2)] p-3 text-white shadow-[0_24px_48px_rgba(0,0,0,0.16)] backdrop-blur-xl md:block">
         <div className="flex flex-wrap justify-end gap-2">
           <ControlChip label="Вращение" value="Зажать и вести" />
           <ControlChip label="Масштаб" value="Колесо мыши" />
@@ -202,7 +202,7 @@ function ModelCanvas({ modelUrl, title }) {
       </div>
 
       <div className="pointer-events-none absolute inset-x-3 bottom-3 md:hidden">
-        <div className="mx-auto max-w-sm rounded-[1.4rem] border border-white/14 bg-black/22 px-4 py-3 text-white shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur-md">
+        <div className="mx-auto max-w-sm rounded-[1.4rem] border border-white/14 bg-[rgba(10,40,32,0.22)] px-4 py-3 text-white shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl">
           <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-white/20" />
           <div className="grid grid-cols-2 gap-2">
             <ControlChip label="Вращение" value="Поворот пальцем" />
@@ -212,8 +212,8 @@ function ModelCanvas({ modelUrl, title }) {
       </div>
 
       {status !== "ready" ? (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#efe7d9]/88 backdrop-blur-sm">
-          <div className="rounded-full border border-[#b88d58]/20 bg-white/85 px-5 py-3 text-xs font-bold uppercase tracking-[0.24em] text-[#8b6d46]">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[color:var(--page-bg-soft)]/88 backdrop-blur-sm">
+          <div className="rounded-full border border-[color:var(--accent)]/20 bg-white/85 px-5 py-3 text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-strong)]">
             {status === "error" ? errorMessage : "Загрузка 3D-модели"}
           </div>
         </div>
@@ -224,15 +224,19 @@ function ModelCanvas({ modelUrl, title }) {
 
 export default function ModelViewerSection({ content }) {
   return (
-    <section className="overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(184,141,88,0.08),transparent_28%),#f4efe7] py-24 md:py-30">
-      <div className="mx-auto flex max-w-7xl flex-col gap-14 px-4 sm:px-6 lg:px-8">
+    <section className="overflow-hidden bg-[linear-gradient(180deg,var(--page-bg)_0%,var(--page-bg-soft)_100%)] py-24 md:py-30">
+      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow={content.eyebrow}
           title={content.title}
           description={content.description}
         />
+      </div>
 
-        <ModelCanvas modelUrl={content.modelUrl} title={content.title} />
+      <div className="mt-12 px-0 sm:px-4 lg:px-6">
+        <div className="mx-auto w-full max-w-[110rem]">
+          <ModelCanvas modelUrl={content.modelUrl} title={content.title} />
+        </div>
       </div>
     </section>
   );

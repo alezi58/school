@@ -141,7 +141,30 @@
       subtitle:
         "Главный фасад школы с фирменной кирпичной кладкой и арками в золотой час.",
       image: "/images/hero.png",
-      className: "md:col-span-2 md:row-span-2",
+    },
+    {
+      id: "facade-variant-1",
+      title: "Главный фасад по ул. Дьяченко",
+      subtitle: "Вариант 1. Фасадное решение и композиция главного объема.",
+      image: "/images/gallery-facade-variant-1.png",
+    },
+    {
+      id: "axonometry-variant-1",
+      title: "Аксонометрия по ул. Дьяченко",
+      subtitle: "Вариант 1. Пространственное чтение объема и пластики фасада.",
+      image: "/images/gallery-axonometry-variant-1.png",
+    },
+    {
+      id: "streetline",
+      title: "Развертка вдоль ул. Дьяченко",
+      subtitle: "Включение школы в линию исторической городской застройки.",
+      image: "/images/gallery-dyachenko-streetline.png",
+    },
+    {
+      id: "transport-scheme",
+      title: "Транспортно-пешеходная схема",
+      subtitle: "Маршруты движения, парковка и пешеходные связи внутри участка.",
+      image: "/images/gallery-transport-scheme.png",
     },
     {
       id: "interior",

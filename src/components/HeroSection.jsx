@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HeroSection({ subtitle, title, cta }) {
   const [scrollY, setScrollY] = useState(0);
@@ -43,7 +43,7 @@ export default function HeroSection({ subtitle, title, cta }) {
         }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,15,16,0.2),rgba(15,15,16,0.12)_38%,rgba(0,0,0,0.84))]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(184,141,88,0.32),transparent_42%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(196,155,43,0.2),transparent_42%)]" />
 
       <div
         className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-28 pt-28 text-center sm:px-6 lg:px-8"
@@ -52,7 +52,7 @@ export default function HeroSection({ subtitle, title, cta }) {
           opacity: contentOpacity,
         }}
       >
-        <p className="mb-5 inline-flex rounded-full border border-[#f4ddbb]/20 bg-[#b88d58]/18 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f4ddbb] backdrop-blur">
+        <p className="mb-5 inline-flex rounded-full border border-[color:var(--accent-soft)]/30 bg-[color:var(--accent)]/14 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent-light)] backdrop-blur">
           {subtitle}
         </p>
         <h1 className="font-display max-w-5xl text-5xl leading-[0.92] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-[7.5rem]">
@@ -60,7 +60,7 @@ export default function HeroSection({ subtitle, title, cta }) {
         </h1>
         <a
           href="#arches"
-          className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[#b88d58] px-8 text-base font-bold text-white shadow-[0_18px_44px_rgba(184,141,88,0.34)] transition hover:-translate-y-0.5 hover:bg-[#c79c67]"
+          className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[var(--surface-dark-soft)] px-8 text-base font-bold text-white shadow-[0_18px_44px_rgba(4,63,54,0.34)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-dark)]"
         >
           {cta}
         </a>
@@ -79,4 +79,3 @@ export default function HeroSection({ subtitle, title, cta }) {
     </header>
   );
 }
-

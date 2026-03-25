@@ -2,12 +2,12 @@ import SectionHeader from "./SectionHeader";
 
 export default function ContextSection({ content }) {
   return (
-    <section id="about" className="relative overflow-hidden bg-[#f6f3ee] py-24 md:py-30">
+    <section id="about" className="relative overflow-hidden bg-[var(--page-bg)] py-24 md:py-30">
       <div
         className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 grayscale"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(246,243,238,0.82), rgba(246,243,238,0.92)), url('/images/context.jpg')",
+            "linear-gradient(rgba(237,243,237,0.82), rgba(237,243,237,0.92)), url('/images/context.jpg')",
         }}
       />
 
