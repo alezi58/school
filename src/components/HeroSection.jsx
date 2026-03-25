@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 
 export default function HeroSection({ subtitle, title, cta }) {
   const [scrollY, setScrollY] = useState(0);
@@ -79,3 +79,4 @@ export default function HeroSection({ subtitle, title, cta }) {
     </header>
   );
 }
+
