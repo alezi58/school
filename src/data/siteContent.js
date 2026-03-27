@@ -114,6 +114,14 @@
       "После исторического слоя проект можно изучить в объеме: вращать модель, приближать детали и рассматривать, как школа искусств собирает пространство квартала по переулку Дьяченко, 5, 7.",
     modelUrl: "/models/school-model.glb",
   },
+  gaussianSplatViewer: {
+    eyebrow: "Gaussian Splatting",
+    title: "Тестовый просмотр PLY-сцены",
+    description:
+      "Экспериментальный блок для проверки gaussian splatting прямо на сайте. Viewer собран на основе проекта GaussianSplats3D и готов к загрузке PLY-файла из локальной папки сайта.",
+    splatUrl: "/splats/untitled.ksplat",
+    fileLabel: "untitled.ksplat",
+  },
   metricsIntro: {
     eyebrow: "Показатели проекта",
     title: "Новый стандарт художественного образования",
