@@ -1,6 +1,6 @@
 # School
 
-Адаптивный проект на `React + Vite + Tailwind CSS` с сохраненной структурой и текстами сайта `dyachenko-school.vercel.app`.
+Адаптивный проект на `React + Vite + Tailwind CSS`.
 
 ## Стек
 
